@@ -92,7 +92,7 @@ log_6rd() {
 	logger -t option-6rd "6RD parameters: 6rd-prefix ${srd_prefix}/${srd_prefixlen} 6rd-relay_prefix ${srd_relayprefix}/${srd_masklen} br ${srd_braddr}"
 	delegated_prefix=`ipv6calc -q --action 6rd_local_prefix --6rd_prefix ${srd_prefix}/${srd_prefixlen} --6rd_relay_prefix ${srd_relayprefix}/${srd_masklen} $WANIP4`
 	prefix_len=$(echo "$delegated_prefix" | awk '{split($0,a,"/"); print a[2]}')
-	ifname_ip6addr="$(echo "$delegated_prefix" | awk '{split($0,a,"/"); print a[1]}')1/128"
+	ifname_ip6addr="$(echo "$delegated_prefix" | awk '{split($0,a,"/"); print a[1]}')1/$prefix_len"
 
 	# Lan /64 calculation
 	if ((prefix_len == 56)); then
