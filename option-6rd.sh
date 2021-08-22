@@ -156,6 +156,7 @@ log_6rd() {
 	set interfaces tunnel tun0 description "Telia IPv6 6rd tunnel"
 	set interfaces tunnel tun0 encapsulation sit 
 	set interfaces tunnel tun0 local-ip "${WANIP4}" 
+	set interfaces tunnel tun0 remote-ip "${srd_braddr}"
 	set interfaces tunnel tun0 6rd-default-gw "::${srd_braddr}"
 	set interfaces tunnel tun0 mtu 1472 
 	set interfaces tunnel tun0 multicast disable 
